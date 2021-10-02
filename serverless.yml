@@ -1,0 +1,18 @@
+org: marco49
+app: everymundo-fares-challenge
+service: serverless-currency-formats
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: "20201221"
+
+env:
+  DB_HOST: mongodb+srv://root:jLOQCcttXynZL4tt@everymundochallenge.pdwhu.mongodb.net/everyMundo?retryWrites=true&w=majority
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - httpApi: "*"

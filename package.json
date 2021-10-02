@@ -1,0 +1,24 @@
+{
+  "name": "serverless-currency-formats",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.8",
+    "serverless-http": "^2.7.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "mocha": "^9.1.2"
+  },
+  "scripts": {
+    "start": "export NODE_ENV=dev && node handler.js",
+    "test": "export NODE_ENV=dev && mocha --timeout 10000"
+  }
+}
