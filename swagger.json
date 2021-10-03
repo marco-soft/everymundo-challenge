@@ -14,7 +14,11 @@
   "tags": [
     {
       "name": "Currency-formats",
-      "description": "API for currency formats for fares"
+      "description": "Endpoints for currency formats for fares"
+    },
+    {
+      "name": "Fares",
+      "description": "Endpoints for display the format fares"
     }
   ],
   "schemes": ["https"],
@@ -95,6 +99,38 @@
           }
         }
       }
+    },
+    "/fares": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The country name that you want to filter"
+          },
+          {
+            "in": "query",
+            "name": "display",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The type of currency representation that you want 'symbol' or 'currencyCode'"
+          }
+        ],
+        "tags": ["Fares"],
+        "summary": "Get all fares related with query params",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Fare"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -125,6 +161,16 @@
     "CurrencyFormats": {
       "type": "array",
       "$ref": "#/definitions/CurrencyFormat"
+    },
+    "Fare": {
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "format": {
+          "type": "string"
+        }
+      }
     }
   }
 }
