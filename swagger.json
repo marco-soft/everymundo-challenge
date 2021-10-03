@@ -1,0 +1,130 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "EVERY MUNDO FARES CHALLENGE",
+    "description": "I can get it, come on!",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "fmu1patzmj.execute-api.us-east-1.amazonaws.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Currency-formats",
+      "description": "API for currency formats for fares"
+    }
+  ],
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/currency-formats": {
+      "get": {
+        "tags": ["Currency-formats"],
+        "summary": "Get all currency formats",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CurrencyFormats"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Currency-formats"],
+        "summary": "Create new currency format",
+        "parameters": [
+          {
+            "name": "currency format",
+            "in": "body",
+            "description": "Currency format that we want to create",
+            "schema": {
+              "$ref": "#/definitions/CurrencyFormat"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Currency format successfully added!",
+            "schema": {
+              "$ref": "#/definitions/Format"
+            }
+          }
+        }
+      }
+    },
+    "/currency-formats/{id}": {
+      "get": {
+        "tags": ["Currency-formats"],
+        "summary": "Get a currency formats",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CurrencyFormat"
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "udpate currency format with given ID",
+        "tags": ["Currency-formats"],
+        "responses": {
+          "200": {
+            "description": "Currency format successfully deleted!",
+            "schema": {
+              "$ref": "#/definitions/CurrencyFormat"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete currency format with given ID",
+        "tags": ["Currency-formats"],
+        "responses": {
+          "200": {
+            "description": "Currency format successfully deleted!",
+            "schema": {
+              "$ref": "#/definitions/CurrencyFormat"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CurrencyFormat": {
+      "required": ["country", "currencyCode", "currencySymbol"],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "currencySymbol": {
+          "type": "string"
+        },
+        "currencySymbolPosition": {
+          "type": "string"
+        },
+        "displayCents": {
+          "type": "boolean"
+        },
+        "delimiterThousands": {
+          "type": "string"
+        }
+      }
+    },
+    "CurrencyFormats": {
+      "type": "array",
+      "$ref": "#/definitions/CurrencyFormat"
+    }
+  }
+}

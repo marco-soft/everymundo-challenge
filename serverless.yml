@@ -5,11 +5,10 @@ frameworkVersion: "2"
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   lambdaHashingVersion: "20201221"
-
-env:
-  DB_HOST: mongodb+srv://root:jLOQCcttXynZL4tt@everymundochallenge.pdwhu.mongodb.net/everyMundo?retryWrites=true&w=majority
+  environment:
+    DB_HOST: mongodb+srv://root:jLOQCcttXynZL4tt@everymundochallenge.pdwhu.mongodb.net/everyMundo?retryWrites=true&w=majority
 
 functions:
   api:

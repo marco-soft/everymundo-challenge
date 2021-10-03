@@ -1,9 +1,10 @@
 require("dotenv").config();
 
 const serverless = require("serverless-http");
-var bodyParser = require("body-parser");
-let mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
 
 const { NODE_ENV } = process.env;
 const config = require("./config");
@@ -11,6 +12,8 @@ const currencyFormat = require("./routes/currencyFormat");
 
 const app = express();
 app.use(bodyParser.json());
+
+swaggerDocument = require("./swagger.json");
 
 // db connection
 mongoose.connect(config.DB_HOST, {
@@ -25,6 +28,7 @@ app.get("/test", (req, res) =>
   res.json({ message: "Welcome to our EveryMundo!" })
 );
 
+// currency formats
 app
   .route("/currency-formats")
   .get(currencyFormat.getCurrencyFormats)
@@ -35,11 +39,7 @@ app
   .patch(currencyFormat.updateCurrencyFormat)
   .delete(currencyFormat.deleteCurrencyFormat);
 
-// app.get("/hello", (req, res, next) =>
-//   res.status(200).json({
-//     message: "Hello from path!",
-//   })
-// );
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res, next) =>
   res.status(404).json({
@@ -53,5 +53,5 @@ if (NODE_ENV === "dev") {
   });
   module.exports = app;
 } else {
-  module.exports = serverless(app);
+  module.exports.handler = serverless(app);
 }
