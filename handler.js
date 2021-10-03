@@ -31,6 +31,7 @@ app
   .post(currencyFormat.postCurrencyFormat);
 app
   .route("/currency-formats/:id")
+  .get(currencyFormat.getCurrencyFormat)
   .patch(currencyFormat.updateCurrencyFormat)
   .delete(currencyFormat.deleteCurrencyFormat);
 
