@@ -9,6 +9,7 @@ provider:
   lambdaHashingVersion: "20201221"
   environment:
     DB_HOST: ${ssm:/DB_HOST_EVERYMUNDO~true}
+    DB_HOST_TEST: ${ssm:/DB_HOST_TEST_EVERYMUNDO~true}
 
 functions:
   api:
