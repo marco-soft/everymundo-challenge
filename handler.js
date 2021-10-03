@@ -9,6 +9,7 @@ const swaggerUi = require("swagger-ui-express");
 const { NODE_ENV } = process.env;
 const config = require("./config");
 const currencyFormat = require("./routes/currencyFormat");
+const fare = require("./routes/fare");
 
 const app = express();
 app.use(bodyParser.json());
@@ -38,6 +39,9 @@ app
   .get(currencyFormat.getCurrencyFormat)
   .patch(currencyFormat.updateCurrencyFormat)
   .delete(currencyFormat.deleteCurrencyFormat);
+
+// fares
+app.route("/fares").get(fare.getFares);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
